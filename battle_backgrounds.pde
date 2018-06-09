@@ -6,14 +6,20 @@
 //                                                      |___/
 //
 
-PImage myImage;
+PImage imgOne;
+PImage imgTwo;
 float distortion = 10; // amplitude
 float speed1 = .01; // affects speed of wave scrolling
-float speed2 = 8; // affects wave tightness
-PFont f; 
-float zoom = 7.6;
+float speed2 = 40; // affects wave tightness
+float zoom = 1;
+//float zoom = 7.6;
 final static float inc = .05;
 final static short sz  = 30;
+
+float a = 5;
+float f = .1;
+float fr = 10000;
+float speed = .01;
 
 void settings()
 {
@@ -22,9 +28,11 @@ void settings()
 
 void setup()
 {
-  f = createFont("Arial", 16, true);
-  frameRate(35);
-  myImage = loadImage("assets/001.png");
+  frameRate(fr);
+  imgOne = loadImage("assets/007.png");
+  //AddTransparency(imgOne, 40);
+  
+  imgTwo = loadImage("assets/004.png");
 }
 
 void draw()
@@ -33,24 +41,38 @@ void draw()
 }
 
 void movement() {
-  println("Framerate: " + frameRate);
-  image(myImage, width/2, height/2);
-  rect(0, 0, width, height);
-  fill(0, 0, 0);
-  
-  rect(0, 0, width, height);
-  fill(0);
-
   if (mousePressed)
   {
     if      (mouseButton == LEFT)   zoom += inc;
     else if (mouseButton == RIGHT)  zoom -= inc;
   }
-  //scale(zoom); // UNBLOCK FOR SCALING
-  for (int i = 0; i <myImage.height; ++i) 
+  
+  scale(zoom);
+  translate(0,0);
+  
+  for (int i = 0; i <imgOne.height; ++i) 
   {
-    copy(myImage, i, 0, 1, height, i, (int) (sin((millis()+i*speed2)*speed1)*distortion), 1, height);
-    //translate(width>>1, height>>1);
+    copy(imgOne, i, 0, 1, height, i, (int) (a * sin(f * i + speed*millis())), 1, height);
+    
   }
+  
+  //Diagnostics
   println("Zoom level: " + zoom);
+  println("Framerate: " + frameRate);
 } 
+
+/*
+void AddTransparency(PImage pi, int transparency)
+{
+  transparency <<= 24;
+  for (int i = 0; i < pi.width; i++)
+  {
+    for (int j = 0; j < pi.height; j++)
+    {
+  color c = pi.pixels[i + j * pi.width];
+  c = c & 0x00FFFFFF | transparency;
+  pi.pixels[i + j * pi.width] = c;
+    }
+  }
+}
+*/
