@@ -9,10 +9,10 @@
 final PApplet headsupwindow = new controlpanel();
 
 public static class Globals {
-  public static float a = 5; // Amplitude
-  public static float f = .1;
-  public static float speed = .01;
-  public static String bg_num = "100";
+  public static float a1 = 5; // Amplitude
+  public static float f1 = .1;
+  public static float speed1 = .01;
+  public static String bg_num1 = "100";
   public static int dir_toggle = 1;
 }
 
@@ -38,15 +38,13 @@ void settings()
 void setup()
 {
   frameRate(fr);
-  imgOne = loadImage("assets/"+Globals.bg_num+".png");
-  
-  //imgTwo = loadImage("assets/004.png");
+  imgOne = loadImage("assets/"+Globals.bg_num1+".png");
   runSketch(new String[] { "My HeadsUp Window" }, headsupwindow);
 }
 
 void draw()
 {
-  imgOne = loadImage("assets/"+Globals.bg_num+".png");
+  imgOne = loadImage("assets/"+Globals.bg_num1+".png");
   movement();
 }
 
@@ -58,31 +56,15 @@ void movement() {
   {
     for (int i = 0; i <imgOne.width; ++i) 
     {
-      copy(imgOne, 0, i, width, 1, (int) (Globals.a * sin(Globals.f * i + Globals.speed*millis())), i, width, 1);
+      
+      copy(imgOne, 0, i, width, 1, (int) (Globals.a1 * sin(Globals.f1 * i + Globals.speed1*millis())), i, width, 1);
     }
   }
   else
   {
     for (int i = 0; i <imgOne.height; ++i) 
     {
-      copy(imgOne, i, 0, 1, height, i, (int) (Globals.a * sin(Globals.f * i + Globals.speed*millis())), 1, height);
+      copy(imgOne, i, 0, 1, height, i, (int) (Globals.a1 * sin(Globals.f1 * i + Globals.speed1*millis())), 1, height);
     }
   }
 } 
-
-
-/*
-void AddTransparency(PImage pi, int transparency)
-{
-  transparency <<= 24;
-  for (int i = 0; i < pi.width; i++)
-  {
-    for (int j = 0; j < pi.height; j++)
-    {
-      color c = pi.pixels[i + j * pi.width];
-      c = c & 0x00FFFFFF | transparency;
-      pi.pixels[i + j * pi.width] = c;
-    }
-  }
-}
-*/

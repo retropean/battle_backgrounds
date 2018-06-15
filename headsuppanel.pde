@@ -9,6 +9,7 @@ public static final class controlpanel extends PApplet
     cp5 = new ControlP5(this);
     int[] imgnum = new int[327];
     
+    
     for (int i = 1; i <= 326; i++)
     {
       println(i);
@@ -18,9 +19,9 @@ public static final class controlpanel extends PApplet
     cp5.addSlider("Amplitude")
       .setPosition(10,100)
       .setSize(200,20)
-      .setRange(0,10)
+      .setRange(0,20)
       .setValue(5)
-      .setNumberOfTickMarks(11)
+      .setNumberOfTickMarks(21)
       ;
       
     cp5.addScrollableList("dropdown")
@@ -36,7 +37,7 @@ public static final class controlpanel extends PApplet
       .setSize(200,20)
       .setRange(-2,2)
       .setValue(.01)
-      .setNumberOfTickMarks(6)
+      //.setNumberOfTickMarks(6)
       ;
   
     cp5.addSlider("Speed")
@@ -50,19 +51,19 @@ public static final class controlpanel extends PApplet
       .setPosition(10,310)
       .setSize(200,19)
       .setValue(0)
-      ;    
+      ;
   }
     
   void Amplitude(float selected_a) {
-    Globals.a = selected_a;
+    Globals.a1 = selected_a;
   }
   
   void Frequency(float selected_f) {
-    Globals.f = selected_f;
+    Globals.f1 = selected_f;
   }
   
   void Speed(float selected_speed) {
-    Globals.speed = selected_speed;
+    Globals.speed1 = selected_speed;
   }
   
   public void settings() {
@@ -80,7 +81,7 @@ public static final class controlpanel extends PApplet
   
   // Background drop down
   void dropdown(int n) {
-     Globals.bg_num = nf(n,3);
+     Globals.bg_num1 = nf(n,3);
   }
   
   public void Direction(int theValue) 
