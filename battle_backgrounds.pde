@@ -4,9 +4,8 @@
 // | _|| _ \ | _ \/ _` |  _|  _| / -_) | _ \/ _` / _| / / _` | '_/ _ \ || | ' \/ _` |
 // |___|___/ |___/\__,_|\__|\__|_\___| |___/\__,_\__|_\_\__, |_| \___/\_,_|_||_\__,_|
 //                                                      |___/
-//
+//                                                                    booooooooooing!
 
-//final PApplet headsupwindow = new HeadsUp();
 final PApplet headsupwindow = new controlpanel();
 
 public static class Globals {
@@ -14,6 +13,7 @@ public static class Globals {
   public static float f = .1;
   public static float speed = .01;
   public static String bg_num = "100";
+  public static int dir_toggle = 1;
 }
 
 PImage imgOne;
@@ -28,10 +28,7 @@ float zoom = 4.92; // Good zoom for my portable projector resolution
 final static float inc = .05;
 final static short sz  = 30;
 
-//float a = 5;
-//float f = .1;
 float fr = 10000;
-//float speed = .01;
 
 void settings()
 {
@@ -54,25 +51,24 @@ void draw()
 }
 
 void movement() {
-  if (mousePressed)
-  {
-    if      (mouseButton == LEFT)   zoom += inc;
-    else if (mouseButton == RIGHT)  zoom -= inc;
-  }
-  
   scale(zoom);
   translate(0,0);
   
-  for (int i = 0; i <imgOne.height; ++i) 
+  if(Globals.dir_toggle == 1)
   {
-    copy(imgOne, i, 0, 1, height, i, (int) (Globals.a * sin(Globals.f * i + Globals.speed*millis())), 1, height);
+    for (int i = 0; i <imgOne.width; ++i) 
+    {
+      copy(imgOne, 0, i, width, 1, (int) (Globals.a * sin(Globals.f * i + Globals.speed*millis())), i, width, 1);
+    }
+  }
+  else
+  {
+    for (int i = 0; i <imgOne.height; ++i) 
+    {
+      copy(imgOne, i, 0, 1, height, i, (int) (Globals.a * sin(Globals.f * i + Globals.speed*millis())), 1, height);
+    }
   }
 } 
-
-
-
-
-
 
 
 /*
