@@ -23,7 +23,8 @@ float distortion = 10; // amplitude
 float speed1 = .01; // affects speed of wave scrolling
 float speed2 = 40; // affects wave tightness
 //float zoom = 1;
-float zoom = 7.6; // Good zoom for my full screen home computer resolution
+float zoom = 4.92; // Good zoom for my portable projector resolution
+//float zoom = 7.6; // Good zoom for my full screen home computer resolution
 final static float inc = .05;
 final static short sz  = 30;
 
