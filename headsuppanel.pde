@@ -52,6 +52,12 @@ public static final class controlpanel extends PApplet
       .setSize(200,19)
       .setValue(0)
       ;
+      
+    cp5.addButton("Mic")
+      .setPosition(10,350)
+      .setSize(200,19)
+      .setValue(0)
+      ;
   }
     
   void Amplitude(float selected_a) {
@@ -91,6 +97,14 @@ public static final class controlpanel extends PApplet
       Globals.dir_toggle = 0;
     }
     else Globals.dir_toggle = 1;
-    println(Globals.dir_toggle);
+  }
+  
+  public void Mic(int theValue) 
+  {
+    if(Globals.mic_toggle == 1)
+    {
+      Globals.mic_toggle = 0;
+    }
+    else Globals.mic_toggle = 1;
   }
 }
